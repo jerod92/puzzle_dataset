@@ -27,6 +27,11 @@ def main():
         'tricolor_rotation_matrix': 5,
         'latin_square_matrix': 5,
         'shape_superposition_matrix': 5,
+        'tangent_line': 4,
+        'inscribed_circle': 4,
+        'move_to_target': 4,
+        #'jigsaw_puzzle': 4, # Make sure you have images in the jigsaw_images folder!
+        'color_grid': 4,
     }
 
     # --- Load Sudoku Data from CSV ---
