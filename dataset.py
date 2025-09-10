@@ -19,6 +19,7 @@ from puzzles.inscribed_circle import InscribedCirclePuzzle
 from puzzles.move_to_target import MoveToTargetPuzzle
 from puzzles.jigsaw_puzzle import JigsawPuzzle
 from puzzles.color_grid import ColorGridPuzzle
+from puzzles.object_counting import ObjectCountingPuzzle
 from puzzles.matrix_puzzles import (
     RotationMatrixPuzzle,
     FillProgressionMatrixPuzzle,
@@ -56,6 +57,7 @@ class InterleavedPuzzleDataset(Dataset):
             'move_to_target': MoveToTargetPuzzle(img_size),
             'jigsaw_puzzle': JigsawPuzzle(img_size),
             'color_grid': ColorGridPuzzle(img_size),
+            'object_counting': ObjectCountingPuzzle(img_size),
         }
         
         # Sudoku has special data requirements
