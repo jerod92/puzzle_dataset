@@ -4,6 +4,7 @@ import random
 from PIL import ImageDraw
 from .base_puzzle import BasePuzzle
 from utils.drawing_utils import draw_shape
+import numpy as np
 
 class MoveToTargetPuzzle(BasePuzzle):
     def generate(self):
