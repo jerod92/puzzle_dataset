@@ -14,6 +14,11 @@ from puzzles.maze import MazePuzzle
 from puzzles.shape_augmentation import ShapeAugmentationPuzzle
 from puzzles.line_drawing import LineDrawingPuzzle
 from puzzles.tictactoe import TicTacToePuzzle
+from puzzles.tangent_line import TangentLinePuzzle
+from puzzles.inscribed_circle import InscribedCirclePuzzle
+from puzzles.move_to_target import MoveToTargetPuzzle
+from puzzles.jigsaw_puzzle import JigsawPuzzle
+from puzzles.color_grid import ColorGridPuzzle
 from puzzles.matrix_puzzles import (
     RotationMatrixPuzzle,
     FillProgressionMatrixPuzzle,
