@@ -1,6 +1,6 @@
 # puzzles/shape_augmentation.py
 import random
-from PIL import ImageDraw
+from PIL import Image, ImageDraw
 from .base_puzzle import BasePuzzle
 from utils.drawing_utils import draw_shape
 
@@ -11,11 +11,11 @@ class ShapeAugmentationPuzzle(BasePuzzle):
         # Initial parameters
         shape = random.choice(shapes)
         color_hex = random.choice(self.master_palette)
-        bg_color_hex = '#FFFFFF'
+        bg_color_hex = '#FFFFFF' # Default background color
         center = (self.img_size / 2, self.img_size / 2)
         size = self.img_size / 3
         
-        # Draw input image
+        # Draw input image (always on a white background)
         input_image = self._create_new_image()
         draw_input = ImageDraw.Draw(input_image)
         draw_shape(draw_input, shape, center, size, color_hex)
@@ -23,9 +23,11 @@ class ShapeAugmentationPuzzle(BasePuzzle):
         # Choose and apply a transformation
         target_params, description = self._get_random_transformation(shape, color_hex, bg_color_hex, center, size)
         
-        # Draw target image
-        target_image = self._create_new_image()
-        target_image.paste(target_params['bg_color'])
+        # --- FIX IS HERE ---
+        # Instead of creating a default image and pasting a color,
+        # create the image directly with the final background color.
+        target_image = Image.new('RGB', (self.img_size, self.img_size), target_params['bg_color'])
+        
         draw_target = ImageDraw.Draw(target_image)
         draw_shape(
             draw_target,
