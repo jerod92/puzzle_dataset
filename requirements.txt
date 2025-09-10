@@ -1,8 +1,4 @@
-# Core libraries for data manipulation and plotting
-numpy
-matplotlib
-Pillow
-
-# PyTorch for dataset creation and deep learning
 torch
-torchvision
+numpy
+pandas
+Pillow
