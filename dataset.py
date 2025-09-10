@@ -51,6 +51,11 @@ class InterleavedPuzzleDataset(Dataset):
             'tricolor_rotation_matrix': TricolorRotationMatrixPuzzle(img_size),
             'latin_square_matrix': LatinSquareMatrixPuzzle(img_size),
             'shape_superposition_matrix': ShapeSuperpositionMatrixPuzzle(img_size),
+            'tangent_line': TangentLinePuzzle(img_size),
+            'inscribed_circle': InscribedCirclePuzzle(img_size),
+            'move_to_target': MoveToTargetPuzzle(img_size),
+            'jigsaw_puzzle': JigsawPuzzle(img_size),
+            'color_grid': ColorGridPuzzle(img_size),
         }
         
         # Sudoku has special data requirements
