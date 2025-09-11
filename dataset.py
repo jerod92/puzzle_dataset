@@ -4,6 +4,7 @@ from torch.utils.data import Dataset
 import numpy as np
 import random
 from PIL import Image
+import torchvision
 
 # Import all puzzle generator classes
 from puzzles.sudoku import SudokuPuzzle
