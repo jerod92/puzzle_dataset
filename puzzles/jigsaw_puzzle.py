@@ -7,6 +7,7 @@ from .base_puzzle import BasePuzzle
 class JigsawPuzzle(BasePuzzle):
     """
     Generates a jigsaw puzzle from an image sourced from a torchvision dataset.
+    The shuffled tiles are displayed with gaps between them for clarity.
     """
     def __init__(self, img_size, image_dataset=None):
         super().__init__(img_size)
@@ -15,20 +16,12 @@ class JigsawPuzzle(BasePuzzle):
     def generate(self):
         # --- 1. Get a Source Image ---
         if self.image_dataset:
-            # Pick a random image from the provided dataset
             random_index = random.randint(0, len(self.image_dataset) - 1)
-            source_img, _ = self.image_dataset[random_index] # Dataset returns (image, label)
-        else:
-            # Fallback if no dataset was provided
-            source_img = Image.new('RGB', (100, 100))
-            draw = ImageDraw.Draw(source_img)
-            draw.rectangle((0, 0, 100, 100), fill=random.choice(self.master_palette))
-            draw.text((50, 50), "No Dataset!", anchor="mm", fill="white")
+            source_img, _ = self.image_dataset[random_index]
+        else: # Fallback
+            source_img = Image.new('RGB', (100, 100), random.choice(self.master_palette))
 
-        # Resize image to fit the canvas and convert to RGB
         source_img = source_img.convert('RGB').resize((self.img_size, self.img_size))
-
-        # The target image is the original, solved puzzle
         target_image = source_img
 
         # --- 2. Create the Shuffled Input Image ---
@@ -44,6 +37,20 @@ class JigsawPuzzle(BasePuzzle):
         random.shuffle(tiles)
         
         input_image = self._create_new_image()
+        draw_input = ImageDraw.Draw(input_image)
+        
+        # --- NEW: Draw the grid to create gaps ---
+        gap_width = 4
+        for i in range(grid_size + 1):
+            pos_y = i * tile_size
+            pos_x = i * tile_size
+            # Clamp position to avoid drawing outside the image border
+            pos_y = min(pos_y, self.img_size - 1)
+            pos_x = min(pos_x, self.img_size - 1)
+            draw_input.line([(0, pos_y), (self.img_size, pos_y)], fill=self.line_color, width=gap_width)
+            draw_input.line([(pos_x, 0), (pos_x, self.img_size)], fill=self.line_color, width=gap_width)
+        
+        # Paste the shuffled tiles onto the grid
         for i, tile in enumerate(tiles):
             x = (i % grid_size) * tile_size
             y = (i // grid_size) * tile_size
