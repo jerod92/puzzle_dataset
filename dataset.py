@@ -37,6 +37,13 @@ class InterleavedPuzzleDataset(Dataset):
         self.img_size = img_size
         self.puzzle_manifest = []
 
+        caltech_dataset = None
+        if 'jigsaw_puzzle' in puzzle_counts and puzzle_counts['jigsaw_puzzle'] > 0:
+            print("Jigsaw puzzle requested, loading Caltech256 dataset...")
+            # This will download the dataset on the first run to a './data' folder
+            caltech_dataset = torchvision.datasets.Caltech256(root='./data', download=True)
+            print("Caltech256 dataset loaded.")
+            
         # Mapping of puzzle type names to their generator classes
         self.puzzle_generators = {
             'algebra': AlgebraPuzzle(img_size),
@@ -55,7 +62,7 @@ class InterleavedPuzzleDataset(Dataset):
             'tangent_line': TangentLinePuzzle(img_size),
             'inscribed_circle': InscribedCirclePuzzle(img_size),
             'move_to_target': MoveToTargetPuzzle(img_size),
-            'jigsaw_puzzle': JigsawPuzzle(img_size),
+            'jigsaw_puzzle': JigsawPuzzle(img_size, image_dataset=caltech_dataset), # Pass dataset here
             'color_grid': ColorGridPuzzle(img_size),
             'object_counting': ObjectCountingPuzzle(img_size),
         }
