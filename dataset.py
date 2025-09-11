@@ -29,6 +29,10 @@ from puzzles.matrix_puzzles import (
     LatinSquareMatrixPuzzle,
     ShapeSuperpositionMatrixPuzzle
 )
+from puzzles.vector_logic import VectorLogicPuzzle
+from puzzles.matrix_multiplication import MatrixMultiplicationPuzzle
+from puzzles.one_d_measuring import OneDMeasuringPuzzle
+from puzzles.two_d_measuring import TwoDMeasuringPuzzle
 
 class InterleavedPuzzleDataset(Dataset):
     """
@@ -66,6 +70,10 @@ class InterleavedPuzzleDataset(Dataset):
             'jigsaw_puzzle': JigsawPuzzle(img_size, image_dataset=caltech_dataset), # Pass dataset here
             'color_grid': ColorGridPuzzle(img_size),
             'object_counting': ObjectCountingPuzzle(img_size),
+            'vector_logic': VectorLogicPuzzle(img_size),
+            'matrix_multiplication': MatrixMultiplicationPuzzle(img_size),
+            'one_d_measuring': OneDMeasuringPuzzle(img_size),
+            'two_d_measuring': TwoDMeasuringPuzzle(img_size),
         }
         
         # Sudoku has special data requirements
