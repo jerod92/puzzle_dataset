@@ -33,6 +33,10 @@ def main():
         #'jigsaw_puzzle': 4, # Make sure you have images in the jigsaw_images folder!
         'color_grid': 4,
         'object_counting': 5,
+        'vector_logic': 8,
+        'matrix_multiplication': 4,
+        'one_d_measuring': 6,
+        'two_d_measuring': 6,
     }
 
     # --- Load Sudoku Data from CSV ---
