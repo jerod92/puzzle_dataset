@@ -40,9 +40,9 @@ class InterleavedPuzzleDataset(Dataset):
 
         caltech_dataset = None
         if 'jigsaw_puzzle' in puzzle_counts and puzzle_counts['jigsaw_puzzle'] > 0:
-            print("Jigsaw puzzle requested, loading Caltech256 dataset...")
+            print("Jigsaw puzzle requested, loading Flowers102 dataset...")
             # This will download the dataset on the first run to a './data' folder
-            caltech_dataset = torchvision.datasets.Caltech256(root='./data', download=True)
+            caltech_dataset = torchvision.datasets.Flowers102(root='./data', download=True)
             print("Caltech256 dataset loaded.")
             
         # Mapping of puzzle type names to their generator classes
