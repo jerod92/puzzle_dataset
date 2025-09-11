@@ -20,7 +20,12 @@ def draw_shape(draw, shape_type, center, size, color, rotation=0, border_color=N
 
     points = []
     if shape_type == 'circle':
-        bbox = [cx - w/2, cy - h/2, cx + w/2, cy + h/2]
+        # --- THIS IS THE FIX ---
+        # Ensure the bounding box coordinates are always ordered correctly (x0 < x1, y0 < y1)
+        # using min() and max(), which handles negative width/height from flipping.
+        x0, x1 = min(cx - w/2, cx + w/2), max(cx - w/2, cx + w/2)
+        y0, y1 = min(cy - h/2, cy + h/2), max(cy - h/2, cy + h/2)
+        bbox = [x0, y0, x1, y1]
         draw.ellipse(bbox, fill=color, outline=border_color, width=border_width if border_color else 0)
         return
 
