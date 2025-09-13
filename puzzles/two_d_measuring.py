@@ -2,6 +2,7 @@
 
 import random
 import numpy as np
+import math
 from PIL import Image, ImageDraw, ImageFont
 from scipy.spatial import ConvexHull
 from .base_puzzle import BasePuzzle
