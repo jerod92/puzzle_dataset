@@ -1,6 +1,7 @@
 # puzzles/matrix_multiplication.py
 
 import numpy as np
+import random
 from PIL import ImageDraw, ImageFont
 from .base_puzzle import BasePuzzle
 
